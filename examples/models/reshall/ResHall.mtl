@@ -1,0 +1,36 @@
+newmtl counters_sgroup
+illum 4
+Kd 1.00 0.53 0.28
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl doors_sgroup
+illum 4
+Kd 0.79 0.53 0.38
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl floor_ceiling_sgroup
+illum 4
+Kd 1.00 0.73 0.60
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl overhead_sgroup
+illum 4
+Kd 0.75 0.75 0.75
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl walls_sgroup
+illum 4
+Kd 1.00 0.87 0.80
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl windows_sgroup
+illum 4
+Kd 0.74 0.97 1.00
+Ka 0.00 0.00 0.00
+Tf 0.50 0.50 0.50
+Ni 1.00

@@ -1,0 +1,69 @@
+    
+	html, body{
+		
+		width:100%;
+		height:100%;	
+	}
+	body{
+		background-color: white;
+		margin: 0;
+		overflow: hidden;
+		font-family: arial;
+		
+		border: 1px solid gold;
+		max-width:100%;
+		
+		
+		
+	}
+	section{
+		
+			left:20%;
+			top:5%;
+			width:800px;
+			height:600px;
+			border: 1px solid blue;
+			position:absolute;
+			background-image:url(../images/MainMenu.jpg);
+	}
+		
+	nav{
+		left: 20%;
+		top: 5%;
+		width:400px;
+		height:600px;
+		border: 1px solid red;
+		position:absolute;
+	}
+	
+	#StartTour{
+		top: 20%;
+		position:absolute;
+		
+		background-image:url(../images/tab_03.gif); 
+	}
+	#LogIn{
+		top: 25%;
+		position: absolute;
+		border: 1px solid pink;
+	}
+	
+	#Options{
+		top: 30%;
+		position: absolute;
+		border: 1px solid green;
+	}
+	
+	#Quit{
+		top: 35%;
+		position: absolute;
+		border: 1px solid #339;
+	}
+		
+
+		
+	a{
+		text-decoration:none;
+			
+	}
+

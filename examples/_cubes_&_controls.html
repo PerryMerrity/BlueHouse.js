@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Three.js - Cubes & Controls</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <style>
+			body {
+				background-color: #fff;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container"></div>
+
+		<script src="../build/three.min.js"></script>
+		<script src="js/controls/FirstPersonControls.js"></script>
+		<script src="js/Detector.js"></script>
+
+		<script>
+
+			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+			var container;
+			var camera, controls, scene, renderer;
+			var light, pointLight;
+
+			var clock = new THREE.Clock();
+			
+			init();
+			animate();
+			
+			function init() {
+			
+				container = document.getElementById( 'container' );
+
+				camera = new THREE.OrthographicCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera.position.set( -700, 75, 0 );
+
+				controls = new THREE.FirstPersonControls( camera );
+
+				controls.movementSpeed = 125;
+				controls.lookSpeed = 0.075;
+				controls.noFly = true;
+				controls.lookVertical = false;
+
+				scene = new THREE.Scene();
+
+				light = new THREE.DirectionalLight( 0x69BE28 );
+				light.position.set( -50, 50, -50 ).normalize();
+				scene.add( light );
+				
+				light = new THREE.DirectionalLight( 0xFFB612 );
+				light.position.set( -50, 50, 50 ).normalize();
+				scene.add( light );
+
+				// Grid
+
+				var size = 500, step = 50;
+
+				var geometry = new THREE.Geometry();
+
+				for ( var i = - size; i <= size; i += step ) {
+
+					geometry.vertices.push( new THREE.Vector3( - size, 0, i ) );
+					geometry.vertices.push( new THREE.Vector3(   size, 0, i ) );
+
+					geometry.vertices.push( new THREE.Vector3( i, 0, - size ) );
+					geometry.vertices.push( new THREE.Vector3( i, 0,   size ) );
+
+				}
+
+				var material = new THREE.LineBasicMaterial( { color: 0x000000, opacity: 0.2 } );
+
+				var line = new THREE.Line( geometry, material );
+				line.type = THREE.LinePieces;
+				scene.add( line );
+
+				// Cubes
+
+				var geometry = new THREE.CubeGeometry( 50, 50, 50 );
+				var material = new THREE.MeshLambertMaterial( { color: 0xffffff, shading: THREE.FlatShading, overdraw: true } );
+
+				for ( var i = 0; i < 100; i ++ ) {
+
+					var cube = new THREE.Mesh( geometry, material );
+
+					cube.scale.y = Math.floor( Math.random() * 2 + 1 );
+
+					cube.position.x = Math.floor( ( Math.random() * 1000 - 500 ) / 50 ) * 50 + 25;
+					cube.position.y = ( cube.scale.y * 50 ) / 2;
+					cube.position.z = Math.floor( ( Math.random() * 1000 - 500 ) / 50 ) * 50 + 25;
+
+					scene.add(cube);
+
+				}
+
+				//
+
+				renderer = new THREE.WebGLRenderer( { clearColor: 0xffffff, clearAlpha: 1, antialias: true } );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				container.innerHTML = "";
+				container.appendChild( renderer.domElement );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				controls.handleResize();
+
+			}
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+				render();
+
+			}
+
+
+			function render() {
+
+				var delta = clock.getDelta(),
+					time = clock.getElapsedTime() * 5;
+
+				controls.update( delta );
+
+				renderer.render( scene, camera );
+			}
+
+		</script>
+
+	</body>
+</html>
