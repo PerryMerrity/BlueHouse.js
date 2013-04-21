@@ -12,44 +12,61 @@
 		<script src="js/controls/WalkControls.js"></script>
         
 	</head>
-	<body>
-   
-      <article class ="trophyIcon">
-        <section>
-       		<div id = "trophy"></div>
-           <!-- <input type="button" id="toggleTrophy" value="toggle" /> -->
-        </section>
-       </article>
     
-       <article class ="mapIcon">
-        <section>
-       		<div id = "map"></div>
-           <!-- <input type="button" id="toggleMap" value="toggle" /> --> 
-        </section>
-       </article>
-      
-       <article class ="pauseIcon">
-        <section>
-       		<div id = "pause"></div>
-           <!-- <input type="button" id="togglePause" value="toggle" /> -->
-        </section>
-       </article>
-     
-       <article class ="soundIcon">
-        <section>
-       		<div id = "sound"></div>
-           <!-- <input type="button" id="toggleSound" value="toggle" />  -->
-        </section>
-       </article>
+	<body>
+				
+        <class ="trophy">
+        	<div id="trophyIcon">
+            </div>
+            <div id="trophyList">
+            	<!-- Insert trophy list image-->
+            	<div id="trophyClose">
+                	<!--insert close button on trophy list so that when it's clicked the list closes-->
+                </div>
+            </div>
+           <!-- <input type="button" id="toggleTrophy" value="toggle" /> -->
+		</class> <!--end of trophy-->
+       
+		<class ="pause">
+       		<div id="pauseIcon">
+            </div>
+            <div id="pauseMenu">
+            	<div id="pauseClose">          
+                </div>
+            </div>
+		</class> <!--end of pause-->
+       
+		<class ="map">
+       		<div id="mapIcon">
+            </div>
+            <div id="mapFull">
+            	<div id="mapClose">
+                
+                </div>
+            </div>
+		</class> <!--end of map-->
+       
+		<class ="navKeys">
+       		<div id="navKeyIcon">
+            	<div id="keyW">
+                </div>
+                <div id="keyA">
+                </div>
+                <div id="keyS">
+                </div>
+                <div id="keyD">
+                </div>
+            </div>
+		</class> <!--end of keys-->
+       
+		<class ="sound">
+       		<div id="soundIcon">
+            </div>
+            <div id="noSoundIcon">
+            </div>
+		</class><!--end of sound-->
         
-       <article class ="navKeyIcon">
-        <section>
-       		<div id = "navKey"></div>
-           <!-- <input type="button" id="toggleKey" value="toggle" /> -->
-        </section>
-       </article>
-           
-       <div id="blocker">
+        <div id="blocker">
 			<div id="instructions">
 				<span style="font-size:50px">Click to Play</span><br />
 				W, A, S, D or &larr; &uarr; &rarr; &darr; = Move<br />
@@ -57,30 +74,51 @@
 			</div>
 		</div>
 
-		 <script type="text/javascript">
-		 
-		 //Jquery Code:
-            $(document).ready(function() {    
-             $('#toggleTrophy').click(function()
-			 {
-   			 	$('#trophy').slideToggle('slow'); });
+        
+		<script type="text/javascript">//Jquery Code:
+		
+            $(document).ready(function() {
+				$('#trophyIcon').click(function(){
+					$('#trophyList').show("fast");
+					//work in progress
+			 	});//when trophy icon is clicked, the trophy list expands
+				$('#trophyClose').click(function(){
+					$('#trophyList').hide("slow");
+				});//When "close" button is clicked, the trophy list collapses
 				
-			 $('#toggleMap').click(function()
-			 {	
-				$('#map').slideToggle('slow'); });
+				$('#pauseIcon').click(function(){	
+					$('#pauseMenu').show("fast");//pause menu appears
+					//line of code to PAUSE user action
+				});//When the pause icon is clicked, the pause menu appears
+				$('#pauseClose').click(function(){
+					$('pauseMenu').hide("slow");
+					//line of code to RESUME user action
+				});//When "close" button is clicked, the fullscreen pause menu collapses
+			 
+	     		$('#mapIcon').click(function(){	
+					$('#mapFull').show("fast");//map shows up fullscreen
+					//line of code to PAUSE user action
+				});
+				$('#mapClose').click(function(){
+					$('#mapFull').hide("slow");
+					//line of code to RESUME user action
+				});//When "close" button is clicked, the fullscreen map collapses
 				
-			 $('#togglePause').click(function()
-			 {	
-				$('#pause').slideToggle('slow'); });
+				//[INSERT CODE] When keys W, A, S, or D are clicked, then the respective hud icon is highlighted
 				
-			 $('#toggleSound').click(function()
-			 {
-				$('#sound').slideToggle('slow'); });
+				$('#soundIcon').click(function(){
+				//$('noSoundIcon').css('visibility','hidden').is(':hidden') == false
+					$('#noSoundIcon:hidden').show("fast");
+					$('#soundIcon').hide("fast");
+					//STOP sound
+				});//stops playing sound
+				$('#noSoundIcon').click(function(){
+					$('#soundIcon:hidden').show("fast");
+					$('#noSoundIcon').hide("fast");
+					//PLAY sound
+				});//Resumes playing sound
 				
-			 $('#toggleKey').click(function()
-			 {
-				$('#navKey').slideToggle('slow'); });
-				
+
 		//Threejs Code:	
 			var camera, scene, renderer;
 			var geometry, material, mesh;
